@@ -1,0 +1,13 @@
+#!/bin/bash
+
+fname=$1
+shift
+
+while read line
+do
+  node="$node $line"
+done
+
+echo $node | rfmt $* | dot ${DOTOPTS} -Tsvg  > ${fname%%.*}.svg
+
+echo "PDF file created: ${fname%%.*}.svg"

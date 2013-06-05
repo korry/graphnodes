@@ -1,0 +1,15 @@
+#!/bin/bash
+
+fname=$1
+shift
+
+echo "Paste text, then press Ctrl-D"
+
+while read line
+do
+  node="$node $line"
+done
+
+echo $node | rfmt $* | dot -Tpdf  > ${fname%%.*}.pdf
+
+echo "PDF file created: ${fname%%.*}.pdf"
