@@ -3,11 +3,11 @@ graph (which you can then process with, for example, the dot utility).
 
 To use this tool, run psql and do the following:
 
-  1) SET debug_print_parse = on
+  1) `SET debug_print_parse = on`
       or
-     SET debug_print_plan = on
+     `SET debug_print_plan = on`
 
-  2) SET client_min_messages = debug1
+  2) `SET client_min_messages = debug1`
 
   3) Execute a query 
 
@@ -16,7 +16,7 @@ To use this tool, run psql and do the following:
   5) Run the rfmt tool and pipe stdout to dot to produce a graph
 
 For example:
-
+<pre>
 $ edb-psql sample
 
 sample=# SET debug_print_parse = on;
@@ -33,6 +33,7 @@ DETAIL:     {QUERY
    :setOperations <>
    }
 
+</pre>
 
 Now copy the parse tree (everything from the open brace to the close brace)
 and save it in a file (say /tmp/parse.pg).
@@ -48,20 +49,21 @@ The makepdf script is useful when you want to cut/paste a tree description
 and convert it to a PDF file.
 
 To use makepdf, run:
-
-	makepdf <filename> [<rfmt arguments>]
-
+<pre>
+	makepdf filename [rfmt_arguments]
+</pre>
 When prompted, paste in the tree description and press Ctrl-D (eof).
 
-The output will be written to <filename>
+The output will be written to `<filename>`
 
 For example:
+<pre>
   $makepdf /tmp/select.pdf -v 5 -n
   Paste text, then press Ctrl-D
   { ... tree goes here }
   ^D
   PDF file created: /tmp/select.pdf
-
+</pre>
 --------------------------------------------------------------------------------
 
      -- Korry
